@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crop Yield Prediction</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>🌾 Crop Yield Prediction</h1>
+        
+        <form method="POST">
+            <label>🌡 Temperature (°C)</label>
+            <input type="number" name="temperature" step="0.01" required>
+
+            <label>☔ Rainfall (mm)</label>
+            <input type="number" name="rainfall" step="0.01" required>
+
+            <label>🌿 Fertilizer Used (kg)</label>
+            <input type="number" name="fertilizer" step="0.01" required>
+
+            <button type="submit">Predict Yield</button>
+        </form>
+
+        {% if prediction is not none %}
+            <div class="result">Predicted Yield: <strong>{{ prediction }} tons/ha</strong></div>
+        {% endif %}
+
+        {% if error %}
+            <div class="error">{{ error }}</div>
+        {% endif %}
+    </div>
+</body>
+</html>
